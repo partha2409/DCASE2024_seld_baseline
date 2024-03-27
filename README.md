@@ -22,7 +22,7 @@ For the audio-visual baseline, inspired by the work in [5], we extract ResNet-50
 The final SELDnet architecture is shown below. The input is the multichannel audio and their corresponding video frames from which acoustic and ResNet-50 features are extracted respectively. The model predicts all the active sound event classes for each frame along with their respective spatial location, producing the temporal activity and DOA trajectory for each sound event class. Each sound event class in the Multi-ACCDDOA output is represented by four regressors that estimate the Cartesian coordinates x, y, and z axes of the DOA around the microphone and a distance value. If the vector length represented by x, y, and z coordinates is greater than 0.5, the sound event is considered active, and the corresponding x, y, and z values are considered its predicted DOA.
 
 <p align="center">
-   <img src="" width="400" title="Audiovisual SELDnet with Multi-ACCDDOA Architecture">
+   <img src="images/dcase2024_seld_av_baseline_architecture.pdf" width="400" title="Audiovisual SELDnet with Multi-ACCDDOA Architecture">
 </p>
 
 ## DATASETS
