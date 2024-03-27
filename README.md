@@ -68,6 +68,8 @@ To quickly train SELDnet follow the steps below.
 * Unzip the files under the same 'DCASE2024_SELD_dataset/', ie., if you are using the Ambisonic dataset along with the videos, then the 'DCASE2024_SELD_dataset/' should have three folders - 'foa_dev/', 'metadata_dev/', and 'video_dev/' after unzipping.
   
 * Now update the respective dataset name and its path in the `parameter.py` script. For the above example, you will change `dataset='foa'` and `dataset_dir='DCASE2024_SELD_dataset/'`. Also, provide a directory path `feat_label_dir` in the same `parameter.py` script where all the features and labels will be dumped.
+  
+* To run the audio visual baseline, change  `modality = "audio_visual" ` in the `parameter.py` script.
 
 * Extract features from the downloaded dataset by running the `batch_feature_extraction.py` script. Run the script as shown below. This will dump the normalized features and labels in the `feat_label_dir` folder. The Python script allows you to compute all possible features and labels. You can control this by editing the `parameter.py` script before running the `batch_feature_extraction.py` script.
 
