@@ -16,9 +16,15 @@ class VideoFeatures(nn.Module):
     def forward(self, images):
         with torch.no_grad():
             preprocessed_images = [self.preprocess(image) for image in images]
-            preprocessed_images = torch.stack(preprocessed_images, dim=0)
-            vid_features = self.backbone(preprocessed_images)
-            vid_features = torch.mean(vid_features, dim=1)
+            max_batch_size = 1000
+            iter = (len(preprocessed_images) - 1) // max_batch_size + 1
+            vid_features_part_list = []
+            for i in range(iter):
+                preprocessed_images_part = torch.stack(preprocessed_images[i * max_batch_size: (i + 1) * max_batch_size], dim = 0)
+                vid_features_part = self.backbone(preprocessed_images_part)
+                vid_features_part = torch.mean(vid_features_part, dim=1)
+                vid_features_part_list.append(vid_features_part)
+            vid_features = torch.cat(vid_features_part_list, dim = 0)
             return vid_features
 
 
