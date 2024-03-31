@@ -1,7 +1,7 @@
 
 # DCASE 2024: Sound Event Localization and Detection (SELD) Evaluated in Real Spatial Sound Scenes
 
-[Please visit the official webpage of the DCASE 2024 Challenge for details missing in this repo](https://dcase.community/challenge2024/task-sound-event-localization-and-detection-evaluated-in-real-spatial-sound-scenes).
+[Please visit the official webpage of the DCASE 2024 Challenge for details missing in this repo](https://dcase.community/challenge2024/task-audio-and-audiovisual-sound-event-localization-and-detection-with-source-distance-estimation).
    
 As the baseline method for the SELD task, we use the SELDnet method studied in the following papers, with  Multiple Activity-Coupled Cartesian Distance and Direction of Arrival (Multi-ACCDDOA) representation as the output format. Specifically for the microphone version of the dataset, we have added support for the SALSA-lite features. If you are using this baseline method or the datasets in any format, then please consider citing the following papers. If you want to read more about [generic approaches to SELD then check here](https://www.aane.in/research/computational-audio-scene-analysis-casa/sound-event-localization-detection-and-tracking).
 
@@ -98,15 +98,15 @@ As the [SELD evaluation metric](https://www.aane.in/research/computational-audio
 
 2. [Archontis Politis, Annamaria Mesaros, Sharath Adavanne, Toni Heittola, and Tuomas Virtanen, "Overview and Evaluation of Sound Event Localization and Detection in DCASE 2019", IEEE/ACM Transactions on Audio, Speech, and Language Processing (TASLP 2020)](https://arxiv.org/pdf/2009.02792.pdf)
 
-This year, we have simplified the metrics and we are using only F-score (F<sub>20°</sub>), angular error (AE<sub>CD</sub>), and relative distance error (RDE<sub>CD</sub>) computed at frame level (instead of computing them in one-second non-overlapping segments as done in previous years.
-The F-score (F<sub>20°</sub>) is more focused on the detection part, but we consider the prediction to be correct only if the prediction and reference class are the same, the angular error is below 20&deg;, and the relative distance error is bellow 1.0.
-The next two metrics are more focused on the localization part, also referred as the class-aware localization, corresponding to the angular error (AE<sub>CD</sub>) in degrees, and a relative distance error (RDE<sub>CD</sub>), where the subscript refers to _classification-dependent_. The relative distance error is defined as the difference between the estimated and the reference distances divided by the reference distance. Unlike the location-aware detection, we do not use any angular or distance thresholds.
+This year, we have simplified the metrics and we are using only F-score (F<sub>20°</sub>), DOA angular error (DOAE<sub>CD</sub>), and relative distance error (RDE<sub>CD</sub>) computed at frame level (instead of computing them in one-second non-overlapping segments as done in previous years.
+The F-score (F<sub>20°</sub>) is more focused on the detection part, but we consider the prediction to be correct only if the prediction and reference class are the same, the DOA angular error is below 20&deg;, and the relative distance error is bellow 1.0.
+The next two metrics are more focused on the localization part, also referred as the class-aware localization, corresponding to the angular error (DOAE<sub>CD</sub>) in degrees, and a relative distance error (RDE<sub>CD</sub>), where the subscript refers to _classification-dependent_. The relative distance error is defined as the difference between the estimated and the reference distances divided by the reference distance. Unlike the location-aware detection, we do not use any angular or distance thresholds.
 
 As in the previous challenge, this year we use the macro mode of computation. We first compute the above four metrics for each of the sound classes and then average them to get the final system performance.
 
 The evaluation metric scores for the test split of the development dataset is given below. 
 
-| Dataset | F<sub>20°</sub> | AE<sub>CD</sub> | RDE<sub>CD</sub> |
+| Dataset | F<sub>20°</sub> | DOAE<sub>CD</sub> | RDE<sub>CD</sub> |
 | ----| --- | --- | --- |
 | Audio - Ambisonic (FOA + Multi-ACCDOA) | 13.1% | 36.9&deg; | 0.33 |
 | Audio-visual - Ambisonic (FOA + Multi-ACCDOA) | 11.3% | 38.4&deg; | 0.36 |
