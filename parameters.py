@@ -106,6 +106,7 @@ def get_params(argv='1'):
 
     elif argv == '6':
         print("MIC + GCC + multi ACCDOA\n")
+        params['pretrained_model_weights'] = '6_1_dev_split0_multiaccdoa_mic_gcc_model.h5'
         params['quick_test'] = False
         params['dataset'] = 'mic'
         params['use_salsalite'] = False
