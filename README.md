@@ -110,6 +110,8 @@ The evaluation metric scores for the test split of the development dataset is gi
 | ----| --- | --- | --- |
 | Audio - Ambisonic (FOA + Multi-ACCDOA) | 13.1% | 36.9&deg; | 0.33 |
 | Audio-visual - Ambisonic (FOA + Multi-ACCDOA) | 11.3% | 38.4&deg; | 0.36 |
+| Audio - (MIC-GCC + Multi-ACCDOA) | 9.9% | 38.1&deg; | 0.30 |
+| Audio-visual - (MIC-GCC + Multi-ACCDOA) | 11.8% | 38.5&deg; | 0.29 |
 
 **Note:** The reported baseline system performance is not exactly reproducible due to varying setups. However, you should be able to obtain very similar results.
 
