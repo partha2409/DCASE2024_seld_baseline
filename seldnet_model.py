@@ -171,14 +171,16 @@ class SeldModel(torch.nn.Module):
         for fnn_cnt in range(len(self.fnn_list) - 1):
             x = self.fnn_list[fnn_cnt](x)
         doa = self.fnn_list[-1](x)
+        # the below-commented code applies tanh for doa and relu for distance estimates respectively in multi-accdoa scenarios.
+        # they can be uncommented and used, but there is no significant changes in the results.
+        #doa = doa.reshape(doa.size(0), doa.size(1), 3, 4, 13)
+        #doa1 = doa[:, :, :, :3, :]
+        #dist = doa[:, :, :, 3:, :]
 
-        doa = doa.reshape(doa.size(0), doa.size(1), 3, 4, 13)
-        doa1 = doa[:, :, :, :3, :]
-        dist = doa[:, :, :, 3:, :]
+        #doa1 = self.doa_act(doa1)
+        #dist = self.dist_act(dist)
+        #doa2 = torch.cat((doa1, dist), dim=3)
 
-        doa1 = self.doa_act(doa1)
-        dist = self.dist_act(dist)
-        doa2 = torch.cat((doa1, dist), dim=3)
-
-        doa2 = doa2.reshape((doa.size(0), doa.size(1), -1))
-        return doa2
+        #doa2 = doa2.reshape((doa.size(0), doa.size(1), -1))
+        #return doa2
+        return doa
