@@ -12,7 +12,6 @@ def main(argv):
 
     # use parameter set defined by user
     task_id = '1' if len(argv) < 2 else argv[1]
-    task_id = '3'
     params = parameters.get_params(task_id)
 
     # -------------- Extract features and labels for development set -----------------------------
