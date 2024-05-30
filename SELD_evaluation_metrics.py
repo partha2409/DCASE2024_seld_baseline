@@ -319,13 +319,14 @@ class SELDMetrics(object):
                 [np.repeat(ER, self._nb_classes), F, AngE, DistE, RelDistE, LR, SELD_scr] if self.eval_dist else [
                     np.repeat(ER, self._nb_classes), F, AngE, LR, SELD_scr])
 
-            # non_zero_F_indices = np.where(np.round(F,2) != 0)
-            # F, AngE, LR, SELD_scr, IDSR = F.mean(), np.nanmean(AngE[non_zero_F_indices]), LR[non_zero_F_indices].mean(), SELD_scr[non_zero_F_indices].mean(), IDSR.mean()
-            # DistE, RelDistE = np.nanmean(DistE[non_zero_F_indices]), np.nanmean(RelDistE[non_zero_F_indices])
+            #non_zero_F_indices = np.where(np.round(F,2) != 0)
+
+            #F, AngE, LR, SELD_scr, IDSR = F.mean(), np.nanmean(AngE[non_zero_F_indices]), LR[non_zero_F_indices].mean(), SELD_scr[non_zero_F_indices].mean(), IDSR.mean()
+            #DistE, RelDistE = np.nanmean(DistE[non_zero_F_indices]), np.nanmean(RelDistE[non_zero_F_indices])
 
             F, AngE, LR, SELD_scr, IDSR = F.mean(), np.nanmean(AngE), LR.mean(), SELD_scr.mean(), IDSR.mean()
             DistE, RelDistE = np.nanmean(DistE), np.nanmean(RelDistE)
-            
+
         return (ER, F, AngE, DistE, RelDistE, LR, SELD_scr, classwise_results) if self.eval_dist else (
                     ER, F, AngE, LR, SELD_scr, classwise_results)
 
