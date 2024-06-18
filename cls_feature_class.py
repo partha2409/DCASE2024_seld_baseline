@@ -612,18 +612,26 @@ class FeatureClass:
         :param _pred_dict: Dictionary containing frame-wise sound event time and location information. Output of SELD method
         :param _max_frames: Total number of frames in the recording
         :return: Dictionary containing class-wise sound event location information in each frame
-                dictionary_name[frame-index][class-index][track-index] = [azimuth, elevation, (distance)]
+                dictionary_name[frame-index][class-index][track-index] = [azimuth, elevation, (distance)] or
+                                                                         [x, y, z, (distance)]
         '''
         nb_frames = _max_frames
         output_dict = {x: {} for x in range(nb_frames)}
         for frame_idx in range(0, _max_frames):
             if frame_idx not in _pred_dict:
                 continue
-            for [class_idx, track_idx, az, el, *dist] in _pred_dict[frame_idx]:
+            for [class_idx, track_idx, *localization] in _pred_dict[frame_idx]:
                 if class_idx not in output_dict[frame_idx]:
                     output_dict[frame_idx][class_idx] = {}
-                # assert track_idx not in output_dict[frame_idx][class_idx]  # I don't know why sometimes this happens... they seem to be repeated DOAs # TODO: Is this still happening?
-                output_dict[frame_idx][class_idx][track_idx] = [az, el] + dist
+
+                if track_idx not in output_dict[frame_idx][class_idx]:
+                    output_dict[frame_idx][class_idx][track_idx] = localization
+                else:
+                    # Repeated track_idx for the same class_idx in the same frame_idx, the model is not estimating
+                    # track IDs, so track_idx is set to a negative value to distinguish it from a proper track ID
+                    min_track_idx = np.min(np.array(list(output_dict[frame_idx][class_idx].keys())))
+                    new_track_idx = min_track_idx - 1 if min_track_idx < 0 else -1
+                    output_dict[frame_idx][class_idx][new_track_idx] = localization
 
         return output_dict
 

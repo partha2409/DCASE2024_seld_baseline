@@ -397,8 +397,8 @@ class SELDMetrics(object):
                     FPcinf = max(0, Pc - Rc)
                     Kc = min(Pc, Rc)
                     TPc = Kc
-                    Lc = np.sum(doa_err_list > self._ang_T or (eval_dist and dist_err_list > self._dist_T)
-                                                           or (eval_dist and rel_dist_err_list > self._reldist_T))
+                    Lc = np.sum((doa_err_list > self._ang_T) + (eval_dist and dist_err_list > self._dist_T)
+                                + (eval_dist and rel_dist_err_list > self._reldist_T))
                     FPct = Lc
                     FPc = FPcinf + FPct
                     TPct = Kc - FPct
